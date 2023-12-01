@@ -1,28 +1,43 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Display Dates</title>
-</head>
 <body>
-    <h1>Display all dates of a given year</h1>
-    <button onclick="displayDates()">Display Dates</button>
-    <div id="output"></div>
 
-    <script>
-        function displayDates() {
-            let year = prompt("Enter a year");
-            let output = document.getElementById("output");
-            output.innerHTML = "";
+<h2>Calendar Generator</h2>
 
-            for (let month = 0; month < 12; month++) {
-                let date = new Date(year, month, 1);
-                while (date.getMonth() === month) {
-                    let p = document.createElement("p");
-                    p.textContent = date.toDateString();
-                    output.appendChild(p);
-                    date.setDate(date.getDate() + 1);
+<p>Enter a year:</p>
+
+<input type="text" id="year" name="year">
+<button onclick="Calendar()">Generate Calendar</button>
+
+<p id="calendar"></p>
+
+<script>
+function Calendar() {
+    var year = document.getElementById("year").value;
+    var calendar = "";
+    for (var month = 0; month < 12; month++) {
+        calendar += "<h3>" + new Date(year, month).toLocaleString('default', { month: 'long' }) + "</h3>";
+        calendar += "<table border='1'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";
+        var firstDay = new Date(year, month, 1).getDay();
+        var daysInMonth = 32 - new Date(year, month, 32).getDate();
+        var date = 1;
+        for (var i = 0; i < 6; i++) {
+            calendar += "<tr>";
+            for (var j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDay || date > daysInMonth) {
+                    calendar += "<td></td>";
+                } else {
+                    calendar += "<td>" + date + "</td>";
+                    date++;
                 }
             }
+            calendar += "</tr>";
         }
-    </script>
+        calendar += "</table>";
+    }
+    document.getElementById("calendar").innerHTML = calendar;
+}
+</script>
+
 </body>
 </html>
