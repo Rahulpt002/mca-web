@@ -1,8 +1,13 @@
 <html>
+    <head>
+        
+    </head>
 <body bgcolor="red">
-<button onclick="changeColor()">change</button>
+<center>
+<button style="padding: 15px 32px;background-color: aquamarine;border-radius: 10px ;" onclick="changeColor()">change</button>
+</center>
 <script>
-  var colors = ["red", "blue", "green", "yellow","pink","black","grey","orange","white","vibgyor","brown"];
+  var colors = ["red", "blue", "green", "yellow","pink","black","grey","orange","lavender","vibgyor","brown"];
   var index=0
 function changeColor()
 {
@@ -10,5 +15,6 @@ function changeColor()
   index = (index + 1) % colors.length;
 }
 </script>
+
 </body>
 </html>
